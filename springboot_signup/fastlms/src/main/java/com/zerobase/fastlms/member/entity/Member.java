@@ -1,10 +1,14 @@
-package com.zerobase.fastlms.member;
+package com.zerobase.fastlms.member.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -15,4 +19,6 @@ public class Member {
     private String userName;
     private String phone;
     private String password;
+
+    private LocalDateTime regDt;
 }
