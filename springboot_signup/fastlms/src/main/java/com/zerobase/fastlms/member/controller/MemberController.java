@@ -1,5 +1,6 @@
-package com.zerobase.fastlms.member;
+package com.zerobase.fastlms.member.controller;
 
+import com.zerobase.fastlms.member.model.MemberInput;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +22,12 @@ public class MemberController {
     회원가입 button 누르면 post로
      */
     @PostMapping("/member/register")
-    public String registerSubmit(HttpServletRequest request, HttpServletResponse response){
+    public String registerSubmit(HttpServletRequest request, HttpServletResponse response, MemberInput parameter){
         /*Request 는 Web-> Server로
         Response는 Server-> Web으로*/
 
-        String userId=request.getParameter("userId");
-        //값을 받아올 수 있다.
-        String userName=request.getParameter("userName");
-        String password=request.getParameter("password");
-        String phone=request.getParameter("phone");
+        System.out.println(parameter.toString());
 
-        System.out.println("user Id: "+userId+" UserName: "+userName+" password: "+password+" phone : "+phone);
 
         return "member/register";
     }
