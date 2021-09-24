@@ -49,5 +49,21 @@ public class MemberController {
         return "member/register-complete";
     }
 
+    //http://www.naver.com/news/list.do 가 원래 주소
+    //http://www.naver.com/id=? 물음표는 parameter
+
+    @GetMapping("/member/email-auth")
+    public String emailAuth(Model model,HttpServletRequest request){
+        //parameter을 받는 법
+        String uuid=request.getParameter("id");
+        System.out.println(uuid);
+
+        boolean result=memberService.emailAuth(uuid);
+        model.addAttribute("result",result);
+
+        return "member/email.auth";
+
+    }
+
 
 }
