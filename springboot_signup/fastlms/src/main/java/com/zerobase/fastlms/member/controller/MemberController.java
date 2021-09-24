@@ -64,6 +64,11 @@ public class MemberController {
         return "member/email.auth";
 
     }
+    @GetMapping("/member/info")
+    public String memberInfo(){
+        return "member/info";
+
+    }
 
 
 }
