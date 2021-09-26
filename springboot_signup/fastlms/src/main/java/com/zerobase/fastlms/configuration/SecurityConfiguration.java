@@ -38,7 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/",
                         "/member/register",
-                        "/member/email-auth")
+                        "/member/email-auth",
+                        "/member/find/password")
                 .permitAll();
 
                 //antMatchers : 어떤 주소에 허용 -> permit all
@@ -52,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //login page는 member의 login.html
         // 로그인 실패시 handler는 failureHandler
         http.logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
         super.configure(http);
