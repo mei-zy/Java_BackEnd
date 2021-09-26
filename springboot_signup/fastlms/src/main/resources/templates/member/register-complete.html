@@ -7,9 +7,15 @@
 <body>
     <div th:if="${result}">
         <h1> 회원가입 축하</h1>
+        <div th:replace="/fragment/layout.html :: fragment-body-menu">
+
+        </div>
     </div>
     <div th:if="${result eq false}">
         <h1> 회원 가입 결과 실패</h1>
+        <div th:replace="/fragment/layout.html :: fragment-body-menu">
+
+        </div>
 
     </div>
 

@@ -39,7 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                         "/member/register",
                         "/member/email-auth",
-                        "/member/find/password")
+                        "/member/find/password",
+                        "/member/reset/password")
                 .permitAll();
 
                 //antMatchers : 어떤 주소에 허용 -> permit all
