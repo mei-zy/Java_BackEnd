@@ -18,18 +18,19 @@ public class AdminMemberController {
 
     @GetMapping("/admin/member/list.do")
     public String list(Model model, MemberParam parameter){
-        parameter.init();
-
+        //parameter.init();
+        parameter.Init();
         List<MemberDto> members=memberService.list(parameter);
         model.addAttribute("list",members);
 
         long totalcount=0;
-        if (members!=null&&members.size()>0)
+        if (members!=null && members.size()>0)
             totalcount=members.get(0).getTotalCount();
-        /*전체 회원 갯수*/
 
         String queryString="";
-        PageUtil pageUtil=new PageUtil(totalcount, parameter.getPageSize(), parameter.getPageIndex(),queryString);
+        /*전체 회원 갯수*/
+
+        PageUtil pageUtil=new PageUtil(totalcount, parameter.getPageSize(),parameter.getPageIndex(),queryString);
         model.addAttribute("pager",pageUtil.pager());
 
         return "admin/member/list";

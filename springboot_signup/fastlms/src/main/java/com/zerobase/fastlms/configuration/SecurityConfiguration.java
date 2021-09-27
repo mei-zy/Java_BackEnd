@@ -21,6 +21,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final MemberService memberService;
 
+
+    @Bean
+    public UserLoginSuccessHandler successHandler(){
+        return new UserLoginSuccessHandler();
+    }
+    /*로그인에 성공했을 경우*/
+
     @Bean
     PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,6 +51,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
                 //antMatchers : 어떤 주소에 허용 -> permit all
+        http.authorizeRequests()
+                .antMatchers("/admin/**")
+                .hasAuthority("ROLE_ADMIN");
+        http.exceptionHandling()
+                .accessDeniedPage("/error/denied");
 
         /*로그인에 대한 페이지 설정*/
         http.formLogin()
@@ -60,6 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         super.configure(http);
     }
 
+    /*auth의 디테일 서비스를 등록*/
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 

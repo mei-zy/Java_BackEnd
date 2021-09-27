@@ -29,4 +29,14 @@ public class Member {
     private LocalDateTime emailAuthDt;
     //이메일 인증날짜
 
+    //찾을 수 있게끔
+    private String resetPasswordKey;
+    private LocalDateTime resetPasswordLimitDt;
+
+    //관리자 여부를 지정하는 것
+    private boolean adminYn;
+
+    private String userAgent;
+    private String ClientIp;
+    /*Week7.과제 - IP와 UserAgent 가져오기에서 변수 추가*/
 }
