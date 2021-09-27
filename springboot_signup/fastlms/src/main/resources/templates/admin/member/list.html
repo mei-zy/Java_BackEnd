@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 회원관리</title>
+    <style>
+        .list table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td{
+
+            border:solid 1px #000;
+        }
+        .search-form{
+            padding: 5px 0 10px 0;
+            text-align: right;
+        }
+        .pager{
+            padding: 10px 0 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>관리자 회원관리</h1>
+    <div th:replace="admin/admin_layout.html :: fragment-body-menu">
+    </div>
+    <div class="list">
+
+        <div class="search-form">
+            <form method="get">
+            <select name="searchType">
+                <option value="all">전체</option>
+                <option th:selected="${#strings.equals(param.searchType,'userId')}" value="userId">아이디</option>
+                <option th:selected="${#strings.equals(param.searchType,'userName')}" value="userName">이름</option>
+                <option th:selected="${#strings.equals(param.searchType,'phone')}" value="phone">핸드폰 번호</option>
+            </select>
+            <input th:value="${param.searchValue}" type="search" name="SearchValue" placeholder="검색어 입력"/>
+            <button type="submit">검색</button>
+            </form>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>아이디(이메일)</th>
+                <th>이름</th>
+                <th>연락처</th>
+                <th>이메일 인증 여부</th>
+                <th>회원가입일</th>
+                <th>관리자여부</th>
+
+                <!-- 마지막 로그인 날짜 Week7 과제. 마지막로그인날짜 칼럼 추가-->
+                <th>마지막 로그인 날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="x:${list}">
+                    <td>1</td>
+                    <td>
+                        <a  th:text="${x.userId}"
+                            th:href="${'detail.do?userId'+x.userId}"></a>
+                    </td>
+                    <td th:text="${x.userName}">박민지</td>
+                    <td th:text="${x.phone}">010-1111-2222</td>
+                    <td>
+                        <p th:if="${x.emailAuthYn}">Y</p>
+                        <p th:if="${x.emailAuthYn eq false}">N</p>
+                    </td>
+                    <td th:text="${x.regDt}">2020.21.21</td>
+                    <td>
+                        <p th:if="${x.adminYn}">Y</p>
+                        <p th:if="${x.adminYn eq false}">N</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pager" th:utext="${pager}">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이메일 템플릿 관리</title>
+    <style>
+        .form table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .form table th, .form table td{
+            border:solid 1px #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>이메일 템플릿 관리</h1>
+    <div th:replace="admin/admin_layout.html :: fragment-body-menu">
+    </div>
+    <div class="form">
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>메일 템플릿 Key</th>
+                <th>메일 제목</th>
+                <th>비고</th>
+            </tr>
+            </thead>
+        </table>
+
+    </div>
+
+</body>
+</html>
